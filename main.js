@@ -1,9 +1,9 @@
-const  title = 'title',
-screens = 'screens',
-screenPrice = 3,
-rollback = 'rollback',
-fullPrice = 5,
-adaptive = true;
+const  title = '';
+const  screens ='';
+const screenPrice = '' ;
+const rollback ='' ;
+const fullPrice = '' ;
+const constadaptive ='' ;
 
 alert(' здесь могла быть ваша реклама');
 console.log(rollback)
