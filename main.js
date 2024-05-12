@@ -1,7 +1,7 @@
 
 const  title = 'unknown project';
 const  screens ='Простые, Сложные, Интерактивные';
-let screenPrice = Math.ceil(Math.random()*70);
+const screenPrice = Math.ceil(Math.random()*70);
 const rollback = Math.ceil(Math.random()*100);
 const fullPrice = 150;
 const adaptive = true;
@@ -14,7 +14,7 @@ const cashAll = `Стоимость верстки экранов  ${screenPrice
 
 console.log(cashAll);
 
-const screensLowerCase = (screens.toLowerCase().split());
+const screensLowerCase = (screens.toLowerCase().split(','));
 
 console.log(screensLowerCase);
 
