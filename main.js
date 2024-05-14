@@ -17,7 +17,7 @@ const fullPrice =
 const servicePercentPrice = fullPrice - rollback;
 
 console.log(fullPrice);
-console.log(Math.floor(servicePercentPrice));
+console.log(Math.ceil(servicePercentPrice));
 
 console.log(typeof title, typeof fullPrice, typeof adaptive);
 
@@ -34,13 +34,11 @@ console.log(screensLowerCase);
 console.log(fullPrice * (rollback / 100));
 
 
-  if( fullPrice >= 30000) {
-    console.log('“Даем скидку в 10%”');
+  if( fullPrice >= 30000) {  // dhj
+    console.log('“Даем скидку в 10%”'); 
     } else if (fullPrice >= 15000 && fullPrice <= 30000) {
       console.log("“Даем скидку в 5%”");
-    } else if ( fullPrice <= 15000 && fullPrice > 0) {
-      console.log('“Даем скидку в 5%”');
-    } else if (fullPrice = 0) {
+    } else if ( fullPrice <= 15000 && fullPrice >= 0) {
       console.log('“Скидка не предусмотрена”');
     } else {
       console.log('что-то пошло не так');
