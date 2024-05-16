@@ -4,22 +4,63 @@ const screenPrice = +prompt("Сколько будет стоить данная
 const rollback = Math.ceil(Math.random() * 100);
 const adaptive = confirm("Нужен ли адаптив на сайте?");
 const service1 = prompt("Какой дополнительный тип услуги нужен?");
-const servicePrice1 = prompt(`Сколько это будет стоить? ${service1}`);
+const servicePrice1 = +prompt(`Сколько это будет стоить? ${service1}`);
 const service2 = prompt("Какой дополнительный тип услуги нужен?");
-const servicePrice2 = prompt(`Сколько это будет стоить? ${service2}`);
+const servicePrice2 = +prompt(`Сколько это будет стоить? ${service2}`);
 
-const fullPrice =
-  Number(screenPrice) + Number(servicePrice1) + Number(servicePrice2);
-const servicePercentPrice = fullPrice - rollback;
+const getTitle = function ( getTitleText) {
+  getTitleText = title.toLowerCase().split(",")
 
-console.log(fullPrice);
+  if (getTitleText[0] != '') {
+    return getTitleText.toLowerCase(0).toString 
+  } else {
+    return getTitleText[1].toLowerCase(0).toString 
+  }
+}
+
+console.log(getTitle())
+
+/* первый вариант  решения с сумами
+  const getAllServicePrices = function () { 
+  const allServicePrices = servicePrice1 + servicePrice2; 
+  return allServicePrices; 
+} 
+console.log(getAllServicePrices()) 
+ 
+function getFullPrice() { 
+  const fullPrice = screenPrice + getAllServicePrices(); 
+  return fullPrice; 
+} 
+*/
+
+
+/* второй вариант решения */
+const getAllServicePrices = function (servicePriceItem1, servicePriceItem2) {
+  const allServicePrices = servicePriceItem1 + servicePriceItem2;
+  return allServicePrices;
+}
+console.log(getAllServicePrices(servicePrice2, servicePrice1));
+
+function getFullPrice() {
+  const fullPrice2 = screenPrice + getAllServicePrices(servicePrice1, servicePrice2);
+  return fullPrice2;
+}
+
+console.log(getFullPrice())
+
+
+
+
+/*
+
+
 console.log(Math.ceil(servicePercentPrice));
 
-console.log(typeof title, typeof fullPrice, typeof adaptive);
+
 
 console.log(screens.length);
 
-const cashAll = `Стоимость верстки экранов${screenPrice} рублей/ долларов/гривен/юани и Стоимость разработки сайта${fullPrice} рублей/ долларов/гривен/юани`;
+const cashAll = `Стоимость верстки экранов${screenPrice} рублей/ долларов/гривен/юани и Стоимость разработки сайта${getFullPrice()} рублей/ долларов/гривен/юани`;
 
 console.log(cashAll);
 
@@ -27,16 +68,17 @@ const screensLowerCase = screens.toLowerCase().split(",");
 
 console.log(screensLowerCase);
 
-console.log(fullPrice * (rollback / 100));
+console.log(getFullPrice() * (rollback / 100));
 
-if (fullPrice >= 30000) {
+if (getFullPrice() >= 30000) {
   console.log("“Даем скидку в 10%”");
 } else 
-if (fullPrice >= 15000 && fullPrice <= 30000) {
+if (getFullPrice() >= 15000 && fullPrice <= 30000) {
   console.log("“Даем скидку в 5%”");
 } else 
-if (fullPrice <= 15000 && fullPrice >= 0) {
+if (getFullPrice() <= 15000 && fullPrice >= 0) {
   console.log("“Скидка не предусмотрена”");
 } else {
   console.log("что-то пошло не так");
 }
+*/
