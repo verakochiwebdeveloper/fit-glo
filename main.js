@@ -26,23 +26,21 @@ const getAllServicePrices = function (price1, price2) {
 }
 const servicePrices = getAllServicePrices(servicePrice1,servicePrice2 );
 
-function getFullPrice() {
-  const fullPrice = screenPrice + servicePrices;
-  return fullPrice;
+function getFullPrice(price1, price2) {
+  return  price1 + price2;
 }
 
-let fullPrice = getFullPrice();
+let fullPrice = getFullPrice(screenPrice, servicePrices);
 
 const showTypeOf =  function(variable) {
-  return (variable, typeof variable)
+  console.log (variable, typeof variable)
 }
 
-const getServicePercentPrices = function () {
-  
-  return fullPrice - rollback; 
+const getServicePercentPrices = function ( price1, price2) {
+  return  price1 - price2; 
 }
 
-const servicePercentPrice = getServicePercentPrices()
+const servicePercentPrice = getServicePercentPrices(fullPrice, rollback)
 
 console.log(servicePercentPrice)
 
@@ -51,21 +49,19 @@ console.log(showTypeOf(screenPrice));
 console.log(showTypeOf(adaptive));
 
 
- function getRollbackMessage () {
+ function getRollbackMessage (fullPrice) {
   if (fullPrice >= 30000) {
     return "Даем скидку в 10%"
-  } else {}
-  if (fullPrice >= 15000 && getFullPrice() <= 30000) {
+  } else if (fullPrice >= 15000) {
     return "Даем скидку в 5%"
-  } else 
-  if (fullPrice <= 15000 && getFullPrice() >= 0) {
+  } else if (fullPrice >= 0) {
     return "Скидка не предусмотрена"
   } else {
     return "что-то пошло не так"
   }
  }
 
- console.log(getRollbackMessage())
+ console.log(getRollbackMessage(fullPrice))
 
  const cashAll = `Стоимость верстки экранов ${screenPrice} рублей/ долларов/гривен/юани и Стоимость разработки сайта ${fullPrice} рублей/ долларов/гривен/юани`;
 
