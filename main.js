@@ -1,8 +1,8 @@
 let title = prompt("Как называется ваш проект?");
 const screens = prompt('Какие типы экранов нужно разработать?','Простые, Сложные, Интерактивные');
-const screenPrice = +prompt("Сколько будет стоить данная работа");
+let screenPrice;
 const rollback = Math.ceil(Math.random() * 100);
-const adaptive = confirm("Нужен ли адаптив на сайте?");
+let adaptive;
 const service1 = prompt("Какой дополнительный тип услуги нужен?");
 const servicePrice1 = +prompt(`Сколько это будет стоить? ${service1}`);
 const service2 = prompt("Какой дополнительный тип услуги нужен?");
@@ -19,9 +19,39 @@ title = getTitle(title);
 
 console.log(title)
 
+//знаю работает криво так как do while отпрабатывает в конце после всех переменых, как код сделать код гармоничнее а то после стольких правок теряюсь
+
+do {
+  screenPrice = +prompt("Сколько будет стоить данная работа");
+}
+
+while ( isNaN(screenPrice) || screenPrice === '' || screenPrice === null ); 
+
+do {
+  adaptive = confirm("Нужен ли адаптив на сайте?");
+}
+
+while (adaptive === false); 
+
+
 
 
 const getAllServicePrices = function (price1, price2) {
+  while (true)
+    if (isNaN(price1) || price1 === '' || price1 === null) {
+      price1 = parseFloat(price1)
+      break;
+      
+    } else {
+      alert("Пожалуйста, введите число.");
+  }
+  while (true)
+    if (isNaN(price2) || price2 === '' || price2 === null) {
+      price2 = parseFloat(price2)
+      break;
+    } else {
+      alert("Пожалуйста, введите число.");
+  }
   return price1 + price2;
 }
 const servicePrices = getAllServicePrices(servicePrice1,servicePrice2 );
