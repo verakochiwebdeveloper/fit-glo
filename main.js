@@ -1,4 +1,4 @@
-let appData = {
+const appData = {
   title: '',
   screens: '',
   screenPrice: 0,
