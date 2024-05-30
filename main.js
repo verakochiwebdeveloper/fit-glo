@@ -1,4 +1,4 @@
-let title = prompt("Как называется ваш проект?");
+/*let title = prompt("Как называется ваш проект?");
 const screens = prompt(
   "Какие типы экранов нужно разработать?",
   "Простые, Сложные, Интерактивные"
@@ -19,49 +19,91 @@ const getTitle = function (titletext) {
 };
 
 title = getTitle(title);
+*/
+let  appData = {
+  title: '',
+  screens: '',
+ screenPrice: 0,
+ adaptive: true,
+  rollback: Math.ceil(Math.random() * 100),
+  AllServicePrices: 0,
+  fullPrice: 0,
+  servicePercentPrice: 0,
+ service1: '',
+ service2: '',
+ 
 
-
-
-//знаю работает криво так как do while отпрабатывает в конце после всех переменых, как код сделать код гармоничнее а то после стольких правок теряюсь
-
-do {
-  screenPrice = +prompt("Сколько будет стоить данная работа");
-} while (isNaN(screenPrice) || screenPrice === "" || screenPrice === null){
-  {
-    do {
-      adaptive = confirm("Нужен ли адаптив на сайте?");
-    } while (adaptive === false);
-  }
 }
-const getAllServicePrices = function (price1, price2) {
-  while (true) {
-    if (isNaN(price1) || price1 === "" || price1 === null) {
-      price1 = parseFloat(price1);
-      break;
-    } else {
-      alert("Пожалуйста, введите число.");
-    }
-    while (true)
-      if (isNaN(price2) || price2 === "" || price2 === null) {
-        price2 = parseFloat(price2);
+
+let start = {
+  asking: functtion () {
+    appData.title = prompt("Как называется ваш проект?")
+    appData.screens = prompt("Какие типы экранов нужно разработать?","Простые, Сложные, Интерактивные"),
+  
+    do {
+      appdata.screenPrice = prompt( "Сколько будет стоить данная работа?")
+    } while(isNumber(appData.screenPrice))
+  
+      appData.adaptive("Нужен, ли адаптив на сайте")
+   }
+
+   getAllServicePrices: function getAllServicePrices (price1, price2) {
+    while (true) {
+      if (isNaN(price1) || price1 === "" || price1 === null) {
+        price1 = parseFloat(price1);
         break;
       } else {
         alert("Пожалуйста, введите число.");
       }
+      while (true)
+        if (isNaN(price2) || price2 === "" || price2 === null) {
+          price2 = parseFloat(price2);
+          break;
+        } else {
+          alert("Пожалуйста, введите число.");
+        }
+      return price1 + price2;
+    }
+  }
+
+  getFullPrice: function getFullPrice(price1, price2) {
     return price1 + price2;
   }
-};
+   isNumber: function isNumber(num) {
+    return !isNaN(parseFloat(num)) && isFinite(num)
+  }
+
+  getRollbackMessage: function getRollbackMessage (fullPrice) {
+    if (fullPrice >= 30000) {
+      return "Даем скидку в 10%";
+    } else if (fullPrice >= 15000) {
+      return "Даем скидку в 5%";
+    } else if (fullPrice >= 0) {
+      return "Скидка не предусмотрена";
+    } else {
+      return "что-то пошло не так";
+    }
+  }
+}
+
+
+
+
+
+const isNumber = function(num) {
+  return !isNaN(parseFloat(num)) && isFinite(num)
+}
+
+
+
 const servicePrices = getAllServicePrices(servicePrice1, servicePrice2);
 
-function getFullPrice(price1, price2) {
-  return price1 + price2;
-}
+
 
 let fullPrice = getFullPrice(screenPrice, servicePrices);
 
-const showTypeOf = function (variable) {
-  console.log(variable, typeof variable);
-};
+
+
 
 const getServicePercentPrices = function (price1, price2) {
   return price1 - price2;
@@ -69,26 +111,11 @@ const getServicePercentPrices = function (price1, price2) {
 
 const servicePercentPrice = getServicePercentPrices(fullPrice, rollback);
 
-function getRollbackMessage(fullPrice) {
-  if (fullPrice >= 30000) {
-    return "Даем скидку в 10%";
-  } else if (fullPrice >= 15000) {
-    return "Даем скидку в 5%";
-  } else if (fullPrice >= 0) {
-    return "Скидка не предусмотрена";
-  } else {
-    return "что-то пошло не так";
-  }
-}
 
-console.log(title);
-console.log(servicePercentPrice);
-console.log(servicePercentPrice);
-console.log(showTypeOf(title));
-console.log(showTypeOf(screenPrice));
-console.log(showTypeOf(adaptive));
 
-console.log(getRollbackMessage(fullPrice));
+
+
+
 
 const cashAll = `Стоимость верстки экранов ${screenPrice} рублей/ долларов/гривен/юани и Стоимость разработки сайта ${fullPrice} рублей/ долларов/гривен/юани`;
 
