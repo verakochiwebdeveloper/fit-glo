@@ -1,23 +1,23 @@
 const appData = {
-  title: '',
-  screens: '',
+  title: "",
+  screens: "",
   screenPrice: 0,
   adaptive: true,
   rollback: Math.ceil(Math.random() * 100),
   AllServicePrices: 0,
   fullPrice: 0,
   servicePercentPrice: 0,
-  service1: '',
-  service2: '',
+  service1: "",
+  service2: "",
 
-  getTitle: function(titletext) {
+  getTitle: function (titletext) {
     let getTitletrim = titletext.trim();
     const firstLetter = getTitletrim.charAt(0).toUpperCase();
     const restOfTitle = getTitletrim.slice(1).toLowerCase();
     return firstLetter + restOfTitle;
   },
 
-  getAllServicePrices: function(price1, price2) {
+  getAllServicePrices: function (price1, price2) {
     while (true) {
       if (isNaN(price1) || price1 === "" || price1 === null) {
         price1 = parseFloat(price1);
@@ -37,15 +37,15 @@ const appData = {
     return price1 + price2;
   },
 
-  getFullPrice: function(price1, price2) {
+  getFullPrice: function (price1, price2) {
     return price1 + price2;
   },
 
-  isNumber: function(num) {
+  isNumber: function (num) {
     return !isNaN(parseFloat(num)) && isFinite(num);
   },
 
-  getRollbackMessage: function(fullPrice) {
+  getRollbackMessage: function (fullPrice) {
     if (fullPrice >= 30000) {
       return "Даем скидку в 10%";
     } else if (fullPrice >= 15000) {
@@ -57,30 +57,52 @@ const appData = {
     }
   },
 
-  start: function() {
-    this.title = prompt("Как называется ваш проект?");
-    this.screens = prompt("Какие типы экранов нужно разработать?", "Простые, Сложные, Интерактивные");
+  start: function () {
+    do {
+      this.title = prompt("Как называется ваш проект?");
+    } while (!isNaN(parseFloat(this.title)));
+
+    do {
+      this.screens = prompt(
+        "Какие типы экранов нужно разработать?",
+        "Простые, Сложные, Интерактивные"
+      );
+    } while (!isNaN(parseFloat(this.screens)));
 
     do {
       this.screenPrice = prompt("Сколько будет стоить данная работа?");
-    } while (this.isNumber(this.screenPrice));
+    } while (
+      isNaN(this.screenPrice) ||
+      this.screenPrice === "" ||
+      this.screenPrice === null
+    );
 
-    this.adaptive = prompt("Нужен ли адаптив на сайте?");
+    do {
+      this.service1 = prompt("Какой дополнительный тип услуги нужен?");
+    } while (!isNaN(parseFloat(this.service1)));
 
-    const servicePrices = this.getAllServicePrices(servicePrice1, servicePrice2);
+    do {
+      this.servicePrice1 = prompt("Сколько это будет стоить?");
+    } while (
+      isNaN(this.servicePrice1) ||
+      this.servicePrice1 === "" ||
+      this.servicePrice1 === null
+    );
 
-    this.fullPrice = this.getFullPrice(this.screenPrice, servicePrices);
+    const servicePrices = this.getAllServicePrices(
+      parseFloat(this.screenPrice),
+      parseFloat(this.servicePrice1)
+    );
+
+    this.fullPrice = this.getFullPrice(
+      parseFloat(this.screenPrice),
+      servicePrices
+    );
 
     this.servicePercentPrice = this.fullPrice - this.rollback;
 
     this.logger();
   },
-
-  logger: function() {
-    for (let key in this) {
-      console.log(key + ": " + this[key]);
-    }
-  }
 };
 
 appData.start();
